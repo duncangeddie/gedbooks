@@ -6,11 +6,20 @@
     <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
-    <h1>Logout</h1>
-    <p>Are you sure you want to log out?</p>
-    <form method="POST">
-        <button type="submit" name="choice" value="accept">Yes, log me out</button>
-        <button type="submit" name="choice" value="reject">No, stay logged in</button>
-    </form>
+    <div class="auth-container">
+        <!-- Logo above logout form -->
+        <img src="/images/logo_short_white.png" alt="GedBooks Logo" class="logo">
+
+        <!-- Confirm logout text -->
+        <h2>Confirm Logout</h2>
+        <p>Are you sure you want to log out?</p>
+
+        <!-- Centered buttons -->
+        <form method="POST" class="logout-form">
+            <button type="submit" name="choice" value="accept">Yes, log me out</button>
+            <button type="submit" name="choice" value="reject">No, stay logged in</button>
+        </form>
+    </div>
 </body>
 </html>
+
