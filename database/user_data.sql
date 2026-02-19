@@ -20,8 +20,6 @@
 --
 
 DROP TABLE IF EXISTS `chart_of_accounts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chart_of_accounts` (
   `user_id` int NOT NULL,
   `ref` int NOT NULL AUTO_INCREMENT,
@@ -31,7 +29,6 @@ CREATE TABLE `chart_of_accounts` (
   `created` date DEFAULT NULL,
   PRIMARY KEY (`ref`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `chart_of_accounts`
@@ -47,8 +44,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `customers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
   `id` int AUTO_INCREMENT PRIMARY KEY,
   `user_id` int NOT NULL,
@@ -60,17 +55,14 @@ CREATE TABLE `customers` (
   `status` tinyint(1) DEFAULT NULL,
   `created` date DEFAULT (curdate())
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `customers`
 --
 
 LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (user_id, name, email_address, tax_number, phone_number, address, status, created)
 VALUES (2,'GedCom','duncan@websprout.co.za',4550123456,774992008,'Villiers Road\r\nWalmer\r\nPort Elizabeth',1,'2026-02-19');
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -78,8 +70,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `general_ledger`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `general_ledger` (
   `user_id` int NOT NULL,
   `transaction_date` date DEFAULT NULL,
@@ -92,7 +82,6 @@ CREATE TABLE `general_ledger` (
   `status` tinyint(1) DEFAULT NULL,
   `created` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `general_ledger`
@@ -108,9 +97,8 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `suppliers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `suppliers` (
+  `id` int AUTO_INCREMENT PRIMARY KEY,
   `user_id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
@@ -118,26 +106,7 @@ CREATE TABLE `suppliers` (
   `phone_number` bigint DEFAULT NULL,
   `address` text,
   `status` tinyint(1) DEFAULT NULL,
-  `created` date DEFAULT NULL
+  `created` date DEFAULT (curdate())
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `suppliers`
---
-
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-02-19 15:10:05

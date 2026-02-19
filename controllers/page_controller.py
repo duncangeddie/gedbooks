@@ -67,3 +67,36 @@ def customer_controller():
         "message": message,
         "customers": customers
     })
+
+def suppliers_controller():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="WEBsprt2",
+        database="user_data"
+    )
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT id, name, email_address, tax_number, phone_number, address, status, created
+        FROM suppliers
+        WHERE user_id = %s
+    """, (session['user_id'],))
+    suppliers = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    page_title = "Suppliers"
+    heading = "Suppliers"
+    message = "Manage your supplier records here."
+
+    return render_view('suppliers.html', {
+        "page_title": page_title,
+        "heading": heading,
+        "message": message,
+        "suppliers": suppliers
+    })

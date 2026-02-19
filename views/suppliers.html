@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suppliers</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('css', filename='suppliers.css') }}">
+</head>
+<body>
+    <h1>Suppliers</h1>
+    <p>Manage your supplier records here.</p>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Tax Number</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.email_address }}</td>
+                <td>{{ supplier.tax_number }}</td>
+                <td>{{ supplier.phone_number }}</td>
+                <td>{{ supplier.address }}</td>
+                <td>{% if supplier.status == 1 %}Active{% else %}Inactive{% endif %}</td>
+                <td>{{ supplier.created }}</td>
+                <td>
+                    <button onclick="document.getElementById('editSupplierModal{{ supplier.id }}').style.display='block'">Edit</button>
+                    {% include 'edit_supplier.html' %}
+                    <button onclick="document.getElementById('deleteSupplierModal{{ supplier.id }}').style.display='block'">Delete</button>
+                    {% include 'delete_supplier.html' %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button onclick="document.getElementById('addSupplierModal').style.display='block'">Add Supplier</button>
+    {% include 'add_supplier.html' %}
+
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.modal').forEach(function(modal) {
+                modal.style.display = 'none';
+            });
+        });
+        document.querySelectorAll('.modal form').forEach(function(form) {
+            form.addEventListener('submit', function() {
+                form.closest('.modal').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
