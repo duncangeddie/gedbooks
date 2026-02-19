@@ -1,0 +1,11 @@
+<div id="deleteCustomerModal{{ customer.id }}" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('deleteCustomerModal{{ customer.id }}').style.display='none'">&times;</span>
+    <h2>Delete Customer</h2>
+    <p>Are you sure you want to delete {{ customer.name }}?</p>
+    <form method="POST" action="{{ url_for('delete_customer_route', customer_id=customer.id) }}">
+      <button type="submit">Yes, Delete</button>
+      <button type="button" onclick="document.getElementById('deleteCustomerModal{{ customer.id }}').style.display='none'">Cancel</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('css', filename='customers.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('css', filename='add_customer.css') }}">
+</head>
+<body>
+    <h1>{{ heading }}</h1>
+    <p>{{ message }}</p>
+
+    <!-- Customers table -->
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Tax Number</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email_address }}</td>
+                <td>{{ customer.tax_number }}</td>
+                <td>{{ customer.phone_number }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{% if customer.status == 1 %}Active{% else %}Inactive{% endif %}</td>
+                <td>{{ customer.created }}</td>
+                <td>
+                    <!-- Edit button -->
+                    <button onclick="document.getElementById('editCustomerModal{{ customer.id }}').style.display='block'">Edit</button>
+                    {% include 'edit_customer.html' %}
+
+                    <!-- Delete button -->
+                    <button onclick="document.getElementById('deleteCustomerModal{{ customer.id }}').style.display='block'">Delete</button>
+                    {% include 'delete_customer.html' %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Button to open Add Customer modal -->
+    <button onclick="document.getElementById('addCustomerModal').style.display='block'">Add Customer</button>
+
+    <!-- Include Add Customer modal -->
+    {% include 'add_customer.html' %}
+
+    <script>
+        // Ensure all modals are closed when the page loads
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.modal').forEach(function(modal) {
+                modal.style.display = 'none';
+            });
+        });
+
+        // Close modal immediately on form submit
+        document.querySelectorAll('.modal form').forEach(function(form) {
+            form.addEventListener('submit', function() {
+                form.closest('.modal').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

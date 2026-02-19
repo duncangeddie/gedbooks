@@ -8,6 +8,12 @@
 <body>
     <h1>{{ heading }}</h1>
     <p>{{ message }}</p>
+
+    <!-- Link to Customers page -->
+    <a href="{{ url_for('customers') }}"><button>Customers</button></a>
+
+    <!-- Existing logout button -->
     <a href="{{ url_for('logout') }}"><button>Logout</button></a>
 </body>
 </html>
+

@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: user_data
 -- ------------------------------------------------------
--- Server version   8.0.45-0ubuntu0.24.04.1
+-- Server version	8.0.45-0ubuntu0.24.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -50,7 +50,9 @@ DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
-  `id` int AUTO_INCREMENT PRIMARY KEY,
+  cd ~/Desktop/gedbooks/database
+nano user_data.sql
+
   `user_id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
@@ -68,8 +70,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` (user_id, name, email_address, tax_number, phone_number, address, status, created)
-VALUES (2,'GedCom','duncan@websprout.co.za',4550123456,774992008,'Villiers Road\r\nWalmer\r\nPort Elizabeth',1,'2026-02-19');
+INSERT INTO `customers` VALUES (2,'GedCom','duncan@websprout.co.za',4550123456,774992008,'Villiers Road\r\nWalmer\r\nPort Elizabeth',1,'2026-02-19');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
