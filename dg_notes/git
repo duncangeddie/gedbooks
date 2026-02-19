@@ -1,3 +1,3 @@
 git add .
-git commit -m "Suppliers feature added"
+git commit -m "Suppliers button added to Dashboard"
 git push

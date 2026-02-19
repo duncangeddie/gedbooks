@@ -4,7 +4,7 @@ from controllers.page_controller import (
     dashboard_controller,
     logout_controller,
     customer_controller,
-    suppliers_controller   # ✅ added suppliers_controller
+    suppliers_controller
 )
 from controllers.auth_controller import login_controller, register_controller
 from controllers.customer_controller import add_customer as add_customer_controller, edit_customer, delete_customer
