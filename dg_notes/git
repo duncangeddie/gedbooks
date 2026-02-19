@@ -1,2 +1,3 @@
 git add .
-git commit -m "User management system built and tested"
+git commit -m "Created user_data.sql with tables"
+git push
