@@ -1,0 +1,41 @@
+------------------------------------
+REQUEST
+------------------------------------
+Before I register a user and test I want another feature added.
+
+When a user first registers an account I want the following databases created for that specific users data that only they access.
+
+I want the database to be named user_[user id] (Use user id from users database for name)
+
+In user_[user id] datbase I want the following tables to be created:
+
+table named customers with the columns being:
+- customer_name (single line text)
+- email_address (single line text)
+- tax_number (number)
+- phone_number (number)
+- address (multi line text)
+
+table named suppliers with the columns being:
+- supplier name (single line text)
+- customer_name (single line text)
+- email_address (single line text)
+- tax_number (number)
+- phone_number (number)
+- address (multi line text)
+
+table named chart_of_accounts with the columns being:
+- account_number (automatic number like id)
+- account_name (single line text)
+- account_type (single line text)
+- account_status (boolean)
+
+table named general_ledger with the columns being:
+- transaction_date (date)
+- post_date (date)
+- transaction_reference (text)
+- account_number (single line text)
+- account_name (single line text)
+- debit_amount (number)
+- credit_amount (number)
+------------------------------------

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, session
 from models.user import User
 from views.render import render_view
-from database.migration import init_db, get_db_connection
+from config.users_database import init_db, get_db_connection
 
 def login_controller():
     if request.method == 'POST':

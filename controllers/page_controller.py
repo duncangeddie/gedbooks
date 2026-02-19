@@ -2,14 +2,18 @@ from flask import request, redirect, url_for, session
 from views.render import render_view
 
 def welcome_controller():
+    # If user is logged in, redirect to dashboard
+    if 'user_id' in session:
+        return redirect(url_for('dashboard'))
+
     page_title = "Welcome"
     heading = "Welcome to GedBooks"
     message = "Your accounting app is ready to go!"
-    return {
+    return render_view('welcome.html', {
         "page_title": page_title,
         "heading": heading,
         "message": message
-    }
+    })
 
 def dashboard_controller():
     page_title = "Dashboard"

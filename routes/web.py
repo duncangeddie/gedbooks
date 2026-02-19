@@ -2,7 +2,7 @@ from flask import Flask, send_from_directory, session, redirect, url_for
 from controllers.page_controller import welcome_controller, dashboard_controller, logout_controller
 from controllers.auth_controller import login_controller, register_controller
 from views.render import render_view
-from database.migration import init_db
+from config.users_database import init_db
 
 app = Flask(__name__, template_folder="../views")
 app.secret_key = "your_secret_key"
@@ -18,8 +18,7 @@ def home():
 
 @app.route('/welcome')
 def welcome():
-    data = welcome_controller()
-    return render_view('welcome.html', data)
+    return welcome_controller()
 
 @app.route('/dashboard')
 def dashboard():
