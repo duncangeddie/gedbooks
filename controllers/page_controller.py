@@ -7,12 +7,16 @@ def welcome_controller():
         return redirect(url_for('dashboard'))
 
     page_title = "Welcome"
+    # Heading and message kept as variables, even if not displayed
     heading = "Welcome to GedBooks"
     message = "Your accounting app is ready to go!"
+    logo_path = "/images/logo_full_white.png"
+
     return render_view('welcome.html', {
         "page_title": page_title,
         "heading": heading,
-        "message": message
+        "message": message,
+        "logo_path": logo_path
     })
 
 def dashboard_controller():

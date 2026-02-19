@@ -1,3 +1,4 @@
+import os
 from flask import Flask, send_from_directory, session, redirect, url_for
 from controllers.page_controller import (
     welcome_controller,
@@ -16,6 +17,9 @@ app = Flask(__name__, template_folder="../views")
 app.secret_key = "your_secret_key"
 
 init_db()
+
+# Base directory = project root (gedbooks/)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 @app.route('/')
 def home():
@@ -55,9 +59,14 @@ def customers():
 def suppliers():
     return suppliers_controller()
 
+# --- Static file routes ---
 @app.route('/css/<path:filename>')
 def css(filename):
-    return send_from_directory('css', filename)
+    return send_from_directory(os.path.join(BASE_DIR, "css"), filename)
+
+@app.route('/images/<path:filename>')
+def images(filename):
+    return send_from_directory(os.path.join(BASE_DIR, "images"), filename)
 
 # --- Customer routes ---
 @app.route('/add_customer', methods=['POST'])

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* Black background */
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif; /* Laravel Breeze uses Nunito */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for logo + buttons */
+.welcome-container {
+    text-align: center;
+}
+
+/* Logo styling */
+.logo {
+    max-width: 300px;
+    margin-bottom: 40px;
+}
+
+/* Buttons styling */
+button {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #dddddd;
+}
