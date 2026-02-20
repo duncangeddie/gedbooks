@@ -49,7 +49,7 @@ CREATE TABLE `customers` (
   `user_id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
-  `tax_number` bigint DEFAULT NULL,
+  `tax_number` bigint DEFAULT NULL,   -- allows NULL values
   `phone_number` bigint DEFAULT NULL,
   `address` text,
   `status` tinyint(1) DEFAULT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `suppliers` (
   `user_id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
-  `tax_number` bigint DEFAULT NULL,
+  `tax_number` bigint DEFAULT NULL,   -- allows NULL values
   `phone_number` bigint DEFAULT NULL,
   `address` text,
   `status` tinyint(1) DEFAULT NULL,

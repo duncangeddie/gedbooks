@@ -70,8 +70,9 @@ a {
 /* Logout form styling */
 .logout-form {
     display: flex;
+    flex-direction: row;   /* force horizontal layout */
     justify-content: center;
-    gap: 20px; /* space between buttons */
+    gap: 20px;             /* space between buttons */
     margin-top: 20px;
 }
 

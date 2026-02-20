@@ -13,6 +13,10 @@ def add_supplier():
         address = request.form.get('address')
         status = request.form.get('status')
 
+        # Convert blank tax_number to None (SQL NULL)
+        if not tax_number:
+            tax_number = None
+
         conn = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -48,6 +52,10 @@ def edit_supplier(supplier_id):
         phone_number = request.form.get('phone_number')
         address = request.form.get('address')
         status = request.form.get('status')
+
+        # Convert blank tax_number to None (SQL NULL)
+        if not tax_number:
+            tax_number = None
 
         conn = mysql.connector.connect(
             host="localhost",
