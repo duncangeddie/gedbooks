@@ -1,8 +1,13 @@
-Before I test I want the following accounts to be created for the user which cannot be deleted:
+Before I test I want the following accounts to be created for the user when they first login:
+
+
 
 The accounts list is in the following format -> name | type
 
 For all the accounts below in the list I want the status set to 2 which means mandatory
+
+accounts list:
+
 
 
 I also want the user to select from the following dropdown options to input a type when adding chart of accounts:
@@ -13,4 +18,8 @@ I also want the user to select from the following dropdown options to input a ty
 - income
 - expenses
 
-When a user selects a status I want it reflected as t
+When a user selects a status it will reflect as the following values:
+
+2 = Mandatory (To mark as a required accounr)
+1 = Active (same as customers and suppliers)
+0 = Inactive (same as customers and suppliers)
