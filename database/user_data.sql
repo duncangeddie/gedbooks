@@ -49,12 +49,12 @@ CREATE TABLE `customers` (
   `user_id` int NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
-  `tax_number` bigint DEFAULT NULL,   -- allows NULL values
-  `phone_number` bigint DEFAULT NULL,
+  `tax_number` bigint DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
   `address` text,
   `status` tinyint(1) DEFAULT NULL,
   `created` date DEFAULT (curdate())
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customers`
@@ -99,14 +99,12 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `suppliers`;
 CREATE TABLE `suppliers` (
   `id` int AUTO_INCREMENT PRIMARY KEY,
-  `user_id` int NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email_address` varchar(255) DEFAULT NULL,
-  `tax_number` bigint DEFAULT NULL,   -- allows NULL values
-  `phone_number` bigint DEFAULT NULL,
+  `user_id` int NOT NULL, `name` varchar(255) DEFAULT NULL, `email_address` varchar(255) DEFAULT NULL,
+  `tax_number` bigint DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
   `address` text,
   `status` tinyint(1) DEFAULT NULL,
   `created` date DEFAULT (curdate())
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dump completed on 2026-02-19 15:10:05
