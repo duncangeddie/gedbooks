@@ -3,6 +3,7 @@ from models.user import User
 from views.render import render_view
 from config.users_database import init_db, get_db_connection
 import mysql.connector
+from controllers.chart_of_accounts_controller import seed_chart_of_accounts
 
 def login_controller():
     if request.method == 'POST':
@@ -17,6 +18,10 @@ def login_controller():
 
         if user:
             session['user_id'] = user['id']
+
+            # Seed mandatory accounts on first login
+            seed_chart_of_accounts(session['user_id'])
+
             return redirect(url_for('dashboard'))
         else:
             return render_view('login.html', {"error": "Invalid credentials"})
@@ -34,7 +39,6 @@ def register_controller():
             cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
             conn.commit()
         except mysql.connector.IntegrityError:
-            # Handle duplicate username gracefully
             conn.close()
             return render_view('register.html', {"error": "Username already taken"})
 

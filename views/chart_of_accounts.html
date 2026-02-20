@@ -21,17 +21,34 @@
         {% for account in accounts %}
         <tr>
             <td>{{ account.ref }}</td>
-            <td>{{ account.name }}</td>
+            <td>
+                {{ account.name }}
+                {% if account.status == 2 %}
+                    🔒
+                {% endif %}
+            </td>
             <td>{{ account.type }}</td>
-            <td>{{ account.status }}</td>
+            <td>
+                {% if account.status == 0 %}
+                    Inactive
+                {% elif account.status == 1 %}
+                    Active
+                {% elif account.status == 2 %}
+                    Mandatory
+                {% else %}
+                    {{ account.status }}
+                {% endif %}
+            </td>
             <td>{{ account.created }}</td>
             <td>
                 <form action="/edit_account/{{ account.ref }}" method="post" style="display:inline;">
                     <button type="submit">Edit</button>
                 </form>
+                {% if account.status != 2 %}
                 <form action="/delete_account/{{ account.ref }}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}

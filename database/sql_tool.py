@@ -17,7 +17,6 @@ def view_customers():
         rows = cursor.fetchall()
 
         if rows:
-            # Use headers="keys" when rows is a list of dicts
             print(tabulate(rows, headers="keys", tablefmt="grid"))
         else:
             print("No customers found.")
@@ -33,7 +32,7 @@ def view_suppliers():
         conn = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="WEBsprt2",   # your MySQL root password
+            password="WEBsprt2",
             database="user_data"
         )
         cursor = conn.cursor(dictionary=True)
@@ -42,7 +41,6 @@ def view_suppliers():
         rows = cursor.fetchall()
 
         if rows:
-            # Use headers="keys" when rows is a list of dicts
             print(tabulate(rows, headers="keys", tablefmt="grid"))
         else:
             print("No suppliers found.")
@@ -58,7 +56,7 @@ def view_chart_of_accounts():
         conn = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="WEBsprt2",   # your MySQL root password
+            password="WEBsprt2",
             database="user_data"
         )
         cursor = conn.cursor(dictionary=True)
@@ -67,10 +65,42 @@ def view_chart_of_accounts():
         rows = cursor.fetchall()
 
         if rows:
-            # Correct usage: headers="keys" for list of dicts
+            # Convert status values to readable labels
+            for row in rows:
+                if row["status"] == 0:
+                    row["status"] = "Inactive"
+                elif row["status"] == 1:
+                    row["status"] = "Active"
+                elif row["status"] == 2:
+                    row["status"] = "Mandatory 🔒"
+
             print(tabulate(rows, headers="keys", tablefmt="grid"))
         else:
             print("No accounts found.")
+
+        cursor.close()
+        conn.close()
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+
+def view_users():
+    try:
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="WEBsprt2",
+            database="users"
+        )
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM users")
+        rows = cursor.fetchall()
+
+        if rows:
+            print(tabulate(rows, headers="keys", tablefmt="grid"))
+        else:
+            print("No users found.")
 
         cursor.close()
         conn.close()
@@ -109,11 +139,14 @@ def clear_all_tables():
 #app loop
 while True:
     #commands list
-    commands = {"view_customers":"View customers table in user_data.sql",
-                "view_suppliers":"View suppliers table in user_data.sql",
-                "view_chart_of_accounts":"View chart of accounts table in user_data.sql",
-                "clear_all_tables":"Clears all tables in user_data.sql",
-                }
+    commands = {
+        "view_customers": "View customers table in user_data.sql",
+        "view_suppliers": "View suppliers table in user_data.sql",
+        "view_chart_of_accounts": "View chart of accounts table in user_data.sql",
+        "view_users": "View users table in users.sql",
+        "clear_all_tables": "Clears all tables in user_data.sql and users.sql",
+    }
+
     #user inputs command
     command_input = str(input("sql_tool/"))
     command = command_input.lower()
@@ -121,7 +154,7 @@ while True:
     #run command
     if command == "help":
         print("-"*70)
-        print("Commands")
+        print("COMMANDS")
         print("-"*70)
         for key, value in commands.items():
             print(f"{key} - {value}")
@@ -139,9 +172,11 @@ while True:
     elif command == "view_chart_of_accounts":
         view_chart_of_accounts()
 
+    elif command == "view_users":
+        view_users()
+
     elif command == "clear_all_tables":
         clear_all_tables()
 
     else:
         print("Unknown command")
-
