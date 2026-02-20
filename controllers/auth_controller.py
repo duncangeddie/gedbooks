@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, session
 from models.user import User
 from views.render import render_view
 from config.users_database import init_db, get_db_connection
+import mysql.connector
 
 def login_controller():
     if request.method == 'POST':
@@ -28,9 +29,16 @@ def register_controller():
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
-        conn.commit()
-        conn.close()
 
+        try:
+            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+            conn.commit()
+        except mysql.connector.IntegrityError:
+            # Handle duplicate username gracefully
+            conn.close()
+            return render_view('register.html', {"error": "Username already taken"})
+
+        conn.close()
         return redirect(url_for('login'))
+
     return render_view('register.html')
