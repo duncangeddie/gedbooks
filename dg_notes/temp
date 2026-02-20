@@ -20,6 +20,6 @@ I also want the user to select from the following dropdown options to input a ty
 
 When a user selects a status it will reflect as the following values:
 
-2 = Mandatory (To mark as a required accounr)
+2 = Mandatory (To mark as a required account)
 1 = Active (same as customers and suppliers)
 0 = Inactive (same as customers and suppliers)

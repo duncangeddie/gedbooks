@@ -1,45 +1,51 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>{{ heading }}</h1>
-<p>{{ message }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="/css/chart_of_accounts.css">
+</head>
+<body>
+    <h1>{{ heading }}</h1>
+    <p>{{ message }}</p>
 
-<link rel="stylesheet" href="/css/chart_of_accounts.css">
+    <table class="table-accounts">
+        <tr>
+            <th>Ref</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+        {% for account in accounts %}
+        <tr>
+            <td>{{ account.ref }}</td>
+            <td>{{ account.name }}</td>
+            <td>{{ account.type }}</td>
+            <td>{{ account.status }}</td>
+            <td>{{ account.created }}</td>
+            <td>
+                <form action="/edit_account/{{ account.ref }}" method="post" style="display:inline;">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="/delete_account/{{ account.ref }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 
-<table class="table-accounts">
-    <tr>
-        <th>Ref</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Actions</th>
-    </tr>
-    {% for account in accounts %}
-    <tr>
-        <td>{{ account.ref }}</td>
-        <td>{{ account.name }}</td>
-        <td>{{ account.type }}</td>
-        <td>{{ account.status }}</td>
-        <td>{{ account.created }}</td>
-        <td>
-            <form action="/edit_account/{{ account.ref }}" method="post">
-                <button type="submit">Edit</button>
-            </form>
-            <form action="/delete_account/{{ account.ref }}" method="post">
-                <button type="submit">Delete</button>
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
-<form action="/add_account" method="post">
-    <input type="text" name="name" placeholder="Account Name" required>
-    <input type="text" name="type" placeholder="Type" required>
-    <select name="status">
-        <option value="1">Active</option>
-        <option value="0">Inactive</option>
-    </select>
-    <button type="submit">Add Account</button>
-</form>
-{% endblock %}
+    <h2>Add New Account</h2>
+    <form action="/add_account" method="post">
+        <input type="text" name="name" placeholder="Account Name" required>
+        <input type="text" name="type" placeholder="Type" required>
+        <select name="status">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+        </select>
+        <button type="submit">Add Account</button>
+    </form>
+</body>
+</html>
