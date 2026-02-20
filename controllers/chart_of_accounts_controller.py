@@ -143,18 +143,18 @@ def edit_account(ref):
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="WEBsprt2",
+        database="user_data"
+    )
+    cursor = conn.cursor(dictionary=True)
+
     if request.method == 'POST':
         name = request.form.get('name')
         type_ = request.form.get('type')
         status = request.form.get('status')
-
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="WEBsprt2",
-            database="user_data"
-        )
-        cursor = conn.cursor()
 
         sql = """
         UPDATE chart_of_accounts
@@ -169,8 +169,14 @@ def edit_account(ref):
         conn.close()
 
         return redirect(url_for('chart_of_accounts'))
+    else:
+        # GET request: fetch account and render modal
+        cursor.execute("SELECT * FROM chart_of_accounts WHERE ref=%s AND user_id=%s", (ref, session['user_id']))
+        account = cursor.fetchone()
+        cursor.close()
+        conn.close()
 
-    return redirect(url_for('chart_of_accounts'))
+        return render_view('edit_account.html', {"account": account})
 
 def delete_account(ref):
     if 'user_id' not in session:

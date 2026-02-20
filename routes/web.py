@@ -100,6 +100,7 @@ def edit_supplier_route(supplier_id):
 def delete_supplier_route(supplier_id):
     return delete_supplier(supplier_id)
 
+# --- Chart of Accounts routes ---
 @app.route('/chart_of_accounts')
 def chart_of_accounts():
     return chart_of_accounts_controller()
@@ -108,8 +109,8 @@ def chart_of_accounts():
 def add_account_route():
     return add_account()
 
-@app.route('/edit_account/<int:ref>', methods=['POST'])
-def edit_account_route(ref):
+@app.route('/edit_account/<int:ref>', methods=['GET', 'POST'])
+def edit_account(ref):
     return edit_account(ref)
 
 @app.route('/delete_account/<int:ref>', methods=['POST'])
