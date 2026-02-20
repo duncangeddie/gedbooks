@@ -1,0 +1,16 @@
+Before I test I want the following accounts to be created for the user which cannot be deleted:
+
+The accounts list is in the following format -> name | type
+
+For all the accounts below in the list I want the status set to 2 which means mandatory
+
+
+I also want the user to select from the following dropdown options to input a type when adding chart of accounts:
+
+- asset
+- liabilities
+- equity
+- income
+- expenses
+
+When a user selects a status I want it reflected as t

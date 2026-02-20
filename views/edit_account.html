@@ -1,0 +1,18 @@
+<div class="modal">
+    <form action="/edit_account/{{ account.ref }}" method="post">
+        <h2>Edit Account</h2>
+        <label for="name">Account Name</label>
+        <input type="text" id="name" name="name" value="{{ account.name }}" required>
+
+        <label for="type">Type</label>
+        <input type="text" id="type" name="type" value="{{ account.type }}" required>
+
+        <label for="status">Status</label>
+        <select id="status" name="status">
+            <option value="1" {% if account.status == 1 %}selected{% endif %}>Active</option>
+            <option value="0" {% if account.status == 0 %}selected{% endif %}>Inactive</option>
+        </select>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

@@ -12,6 +12,12 @@ from controllers.customer_controller import add_customer as add_customer_control
 from controllers.supplier_controller import add_supplier, edit_supplier, delete_supplier
 from views.render import render_view
 from config.users_database import init_db
+from controllers.chart_of_accounts_controller import (
+    chart_of_accounts_controller,
+    add_account,
+    edit_account,
+    delete_account
+)
 
 app = Flask(__name__, template_folder="../views")
 app.secret_key = "your_secret_key"
@@ -93,6 +99,22 @@ def edit_supplier_route(supplier_id):
 @app.route('/delete_supplier/<int:supplier_id>', methods=['POST'])
 def delete_supplier_route(supplier_id):
     return delete_supplier(supplier_id)
+
+@app.route('/chart_of_accounts')
+def chart_of_accounts():
+    return chart_of_accounts_controller()
+
+@app.route('/add_account', methods=['POST'])
+def add_account_route():
+    return add_account()
+
+@app.route('/edit_account/<int:ref>', methods=['POST'])
+def edit_account_route(ref):
+    return edit_account(ref)
+
+@app.route('/delete_account/<int:ref>', methods=['POST'])
+def delete_account_route(ref):
+    return delete_account(ref)
 
 if __name__ == '__main__':
     app.run(debug=True)
